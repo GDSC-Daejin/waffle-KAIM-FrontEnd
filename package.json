@@ -76,5 +76,6 @@
       "not dead",
       "not OperaMini all"
     ]
-  }
+  },
+  "proxy": "http://203.237.81.27:8000"
 }

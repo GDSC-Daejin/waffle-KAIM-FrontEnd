@@ -13,7 +13,7 @@ import CardBody from "components/Card/CardBody.js";
 import IconBox from "components/Icons/IconBox";
 import React from "react";
 
-const MiniStatistics = ({ title, amount, percentage, icon }) => {
+const MiniStatistics = ({ title, amount, percentage, icon, showPercent = true }) => {
   const iconTeal = useColorModeValue("teal.300", "teal.300");
   const textColor = useColorModeValue("gray.700", "white");
 
@@ -37,11 +37,17 @@ const MiniStatistics = ({ title, amount, percentage, icon }) => {
                 alignSelf='flex-end'
                 justifySelf='flex-end'
                 m='0px'
-                color={percentage > 0 ? "green.400" : "red.400"}
+                color={
+                  percentage !== null && percentage > 0 ? "green.400" : "red.400"
+                }
                 fontWeight='bold'
                 ps='3px'
                 fontSize='md'>
-                {percentage > 0 ? `+${percentage}%` : `${percentage}%`}
+                {percentage !== null
+                  ? percentage > 0
+                    ? `+${percentage}${showPercent ? "%" : ""}`
+                    : `${percentage}${showPercent ? "%" : ""}`
+                  : "-"}
               </StatHelpText>
             </Flex>
           </Stat>
