@@ -1,67 +1,50 @@
 import React from "react";
-import {
-  Tr,
-  Td,
-  Flex,
-  Text,
-  Progress,
-  Icon,
-  Button,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import { FaEllipsisV } from "react-icons/fa";
+import { Tr, Td, Flex, Text, useColorModeValue, Tooltip } from "@chakra-ui/react";
 
-function DashboardTableRow(props) {
-  const { logo, name, status, budget, progression } = props;
+const TablesProjectRow = ({ name, logo, budget, diff, progression }) => {
   const textColor = useColorModeValue("gray.700", "white");
+
+  // helper function: render budget cell with tooltip for diff, using red if increased, blue if decreased
+  const renderBudgetCell = (value, diffValue) => {
+    let cellColor = textColor;
+    if (diffValue > 0) cellColor = "red.400";
+    else if (diffValue < 0) cellColor = "blue.400";
+    return (
+      <Tooltip label={`전일대비 ${diffValue}`} fontSize="xs" placement="top">
+        <Text color={cellColor} fontSize='sm'>
+          {value}
+        </Text>
+      </Tooltip>
+    );
+  };
+
   return (
     <Tr>
-      <Td minWidth={{ sm: "250px" }} pl="0px">
-        <Flex alignItems="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
-          <Icon as={logo} h={"24px"} w={"24px"} me="18px" />
-          <Text
-            fontSize="md"
-            color={textColor}
-            fontWeight="bold"
-            minWidth="100%"
-          >
+      {/* 지역: 회사명 (프로필 아이콘 제거) */}
+      <Td>
+        <Flex align='center'>
+          {/* Avatar 제거 */}
+          <Text color={textColor} fontSize='sm' fontWeight='bold'>
             {name}
           </Text>
         </Flex>
       </Td>
+      {/* 경유 */}
+      <Td>{renderBudgetCell(budget?.diesel || "-", diff?.diesel)}</Td>
+      {/* 휘발유 */}
+      <Td>{renderBudgetCell(budget?.gasoline || "-", diff?.gasoline)}</Td>
+      {/* 고급휘발유 */}
+      <Td>{renderBudgetCell(budget?.premiumGasoline || "-", diff?.premiumGasoline)}</Td>
+      {/* 등류 */}
+      <Td>{renderBudgetCell(budget?.kerosene || "-", diff?.kerosene)}</Td>
+      {/* 증가 금액: 평균 diff */}
       <Td>
-        <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
-          {budget}
+        <Text color={textColor} fontSize='sm' fontWeight='bold'>
+          {progression}
         </Text>
-      </Td>
-      <Td>
-        <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
-          {status}
-        </Text>
-      </Td>
-      <Td>
-        <Flex direction="column">
-          <Text
-            fontSize="md"
-            color="teal.300"
-            fontWeight="bold"
-            pb=".2rem"
-          >{`${progression}%`}</Text>
-          <Progress
-            colorScheme={progression === 100 ? "teal" : "cyan"}
-            size="xs"
-            value={progression}
-            borderRadius="15px"
-          />
-        </Flex>
-      </Td>
-      <Td>
-        <Button p="0px" bg="transparent">
-          <Icon as={FaEllipsisV} color="gray.400" cursor="pointer" />
-        </Button>
       </Td>
     </Tr>
   );
-}
+};
 
-export default DashboardTableRow;
+export default TablesProjectRow;
