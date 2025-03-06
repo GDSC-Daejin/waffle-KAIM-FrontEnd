@@ -161,11 +161,11 @@ export const lineChartOptions = {
     gradient: {
       shade: "light",
       type: "vertical",
-      shadeIntensity: 0.5,
-      gradientToColors: undefined, // optional, if not defined - uses the shades of same color in series
+      shadeIntensity: 0.3, // 기존 0.5에서 감소
+      gradientToColors: undefined,
       inverseColors: true,
-      opacityFrom: 0.8,
-      opacityTo: 0,
+      opacityFrom: 0.5, // 기존 0.8에서 낮춤
+      opacityTo: 0.1,   // 기존 0에서 약간 보이도록 변경
       stops: [],
     },
     colors: ["#4FD1C5", "#2D3748"],
