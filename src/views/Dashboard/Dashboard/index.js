@@ -35,7 +35,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     // 절대 URL 사용하여 호출 (proxy 없이)
-    fetch("http://203.237.81.27:8000/dashboard-api/nav-info", { credentials: "include" })
+    fetch("https://kaim-api.youth-dev.com//dashboard-api/nav-info", { credentials: "include" })
       .then((res) => res.json())
       .then((data) => {
         console.log("dashboard-api/nav-info response:", data);

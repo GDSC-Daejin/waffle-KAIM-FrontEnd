@@ -18,7 +18,7 @@ class BarChart extends Component {
 
   componentDidMount() {
     // API 호출하여 full 데이터셋 받아오기
-    fetch("http://203.237.81.27:8000/dashboard-api/bar-graph")
+    fetch("https://kaim-api.youth-dev.com//dashboard-api/bar-graph")
       .then((res) => res.json())
       .then((data) => {
         this.fullData = data.data;

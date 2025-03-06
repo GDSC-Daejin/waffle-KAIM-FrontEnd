@@ -20,7 +20,7 @@ const ActiveUsers = ({ chart }) => {
   const [nationalData, setNationalData] = useState(null);
 
   useEffect(() => {
-    fetch("http://203.237.81.27:8000/dashboard-api/national-average", { credentials: "include" })
+    fetch("https://kaim-api.youth-dev.com//dashboard-api/national-average", { credentials: "include" })
       .then((res) => res.json())
       .then((data) => {
         console.log("national-average response:", data);

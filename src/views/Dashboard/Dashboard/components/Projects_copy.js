@@ -42,7 +42,7 @@ const Projects = ({ title }) => {
   const [projectData, setProjectData] = useState([]);
 
   useEffect(() => {
-    fetch("http://203.237.81.27:8000/dashboard-api/comparison", { credentials: "include" })
+    fetch("https://kaim-api.youth-dev.com//dashboard-api/comparison", { credentials: "include" })
       .then((res) => res.json())
       .then((data) => {
         const rawData = data.data;

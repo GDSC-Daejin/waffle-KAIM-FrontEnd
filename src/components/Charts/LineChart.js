@@ -12,7 +12,7 @@ class LineChart extends React.Component {
   }
 
   fetchData = () => {
-    fetch("http://203.237.81.27:8000/dashboard-api/linear-graph", { credentials: "include" })
+    fetch("https://kaim-api.youth-dev.com//dashboard-api/linear-graph", { credentials: "include" })
       .then((res) => res.json())
       .then((data) => {
         const apiData = data.data;
