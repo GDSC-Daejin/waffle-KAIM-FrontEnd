@@ -20,6 +20,7 @@ import {
   WalletIcon,
 } from "components/Icons/Icons.js";
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { dashboardTableData, timelineData } from "variables/general";
 import ActiveUsers from "./components/ActiveUsers";
 import BuiltByDevelopers from "./components/BuiltByDevelopers";
@@ -30,6 +31,7 @@ import WorkWithTheRockets from "./components/WorkWithTheRockets";
 export default function Dashboard() {
   const iconBoxInside = useColorModeValue("white", "white");
   const [stats, setStats] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     // 절대 URL 사용하여 호출 (proxy 없이)
@@ -92,7 +94,7 @@ export default function Dashboard() {
         <SalesOverview
           title={"Sales Overview"}
           percentage={5}
-          chart={<LineChart />}
+          chart={<LineChart key={location.key} />}
         />
       </Grid>
       <Projects
